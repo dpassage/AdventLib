@@ -21,5 +21,11 @@ class RectTests: XCTestCase {
         XCTAssertEqual(next, Point(x: 2, y: 1))
         let nextNext = subRect.index(after: next)
         XCTAssertEqual(nextNext, Point(x: 1, y: 2))
+
+        let elementsInSubrect = subRect.reduce(0) { (count, _) -> Int in
+            return count + 1
+        }
+
+        XCTAssertEqual(elementsInSubrect, 10)
     }
 }

@@ -74,6 +74,9 @@ extension Rect: Sequence {
 extension Rect: Collection {
     public func index(after i: Point) -> Point {
         if i.x == width - 1 {
+            if i.y == height - 1 {
+                return endIndex
+            }
             return Point(x: 0, y: i.y + 1)
         } else {
             return Point(x: i.x + 1, y: i.y)
@@ -86,6 +89,44 @@ extension Rect: Collection {
 
     public var endIndex: Point {
         // the index of the element _after_ the last element
-        return Point(x: 0, y: height)
+        // we use the index after the end of the last row so that
+        // ranges can "encode" the height and width of the specified
+        // slice.
+        return Point(x: width, y: height - 1)
     }
+
+    public typealias SubSequence = SubRect
+
+    public subscript(bounds: Range<Point>) -> SubRect<Element> {
+        get {
+            let topLeft = bounds.lowerBound
+            let bottomRight = bounds.upperBound + Point(x: -1, y: 0)
+            return SubRect(rect: self, topLeft: topLeft, bottomRight: bottomRight)
+        }
+    }
+}
+
+public struct SubRect<Element>: Collection {
+    public func index(after i: Point) -> Point {
+        if i.x == bottomRight.x {
+            return Point(x: topLeft.x, y: i.y + 1)
+        } else {
+            return Point(x: i.x + 1, y: i.y)
+        }
+    }
+
+    public typealias SubSequence = SubRect
+
+    public subscript(position: Point) -> Element {
+        return rect[position]
+    }
+
+    public var startIndex: Point { return topLeft }
+    public var endIndex: Point { return Point(x: topLeft.x, y: bottomRight.y + 1)}
+
+    var rect: Rect<Element>
+    var topLeft: Point
+    var bottomRight: Point
+
+    public typealias Index = Point
 }
