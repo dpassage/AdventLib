@@ -23,6 +23,11 @@ public struct Rect<Element> {
         return (y * width) + x
     }
 
+    public subscript(point: Point) -> Element {
+        get { return self[point.x, point.y] }
+        set { self[point.x, point.y] = newValue }
+    }
+
     public subscript(x: Int, y: Int) -> Element { // swiftlint:disable:this identifier_name
         get {
             guard let index = index(x: x, y: y) else { fatalError("out of range") }
@@ -56,5 +61,31 @@ extension Rect: CustomStringConvertible {
         }
 
         return result
+    }
+}
+
+extension Rect: Sequence {
+
+    public func makeIterator() -> AnyIterator<Element> {
+        return AnyIterator(storage.makeIterator())
+    }
+}
+
+extension Rect: Collection {
+    public func index(after i: Point) -> Point {
+        if i.x == width - 1 {
+            return Point(x: 0, y: i.y + 1)
+        } else {
+            return Point(x: i.x + 1, y: i.y)
+        }
+    }
+
+    public var startIndex: Point {
+        return Point(x: 0, y: 0)
+    }
+
+    public var endIndex: Point {
+        // the index of the element _after_ the last element
+        return Point(x: 0, y: height)
     }
 }
