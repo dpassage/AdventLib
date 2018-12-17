@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // An array which can grow in either direction
 public struct TwoWayArray<Element> {
     private var storage: [Element]
