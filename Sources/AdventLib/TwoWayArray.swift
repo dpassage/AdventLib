@@ -54,7 +54,7 @@ extension TwoWayArray: MutableCollection {
         }
     }
 
-    public func index(after i: Int) -> Int {
+    public func index(after i: Int) -> Int { // swiftlint:disable:this identifier_name
         return i + 1
     }
 
@@ -70,7 +70,7 @@ extension TwoWayArray: MutableCollection {
 }
 
 extension TwoWayArray: BidirectionalCollection {
-    public func index(before i: Int) -> Int {
+    public func index(before i: Int) -> Int { // swiftlint:disable:this identifier_name
         return i - 1
     }
 }

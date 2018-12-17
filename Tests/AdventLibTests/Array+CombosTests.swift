@@ -8,23 +8,23 @@
 import XCTest
 import AdventLib
 
-class Array_CombosTests: XCTestCase {
+class ArrayCombosTests: XCTestCase {
 
     func testOne() {
         let input = [2, 3]
-        let combos = input.combinations(n: 1)
+        let combos = input.combinations(choose: 1)
         XCTAssertEqual(combos, [[2], [3]])
     }
 
     func testTwo() {
         let input = [1, 2, 3]
-        let combos = input.combinations(n: 2)
+        let combos = input.combinations(choose: 2)
         XCTAssertEqual(combos, [[1, 2], [1, 3], [2, 3]])
     }
 
     func testThree() {
         let input = [1, 2, 3, 4]
-        let combos = input.combinations(n: 3)
+        let combos = input.combinations(choose: 3)
         XCTAssertEqual(combos, [
             [1, 2, 3],
             [1, 2, 4],
@@ -35,7 +35,7 @@ class Array_CombosTests: XCTestCase {
 
     func testTwoOfFour() {
         let input = [1, 2, 3, 4]
-        let combos = input.combinations(n: 2)
+        let combos = input.combinations(choose: 2)
         XCTAssertEqual(combos, [
             [1, 2],
             [1, 3],

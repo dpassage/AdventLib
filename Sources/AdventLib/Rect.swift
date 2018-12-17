@@ -52,8 +52,8 @@ public struct Rect<Element> {
 extension Rect: CustomStringConvertible {
     public var description: String {
         var result: String = ""
-        for y in 0..<height {
-            for x in 0..<width {
+        for y in 0..<height { // swiftlint:disable:this identifier_name
+            for x in 0..<width {  // swiftlint:disable:this identifier_name
                 let thisIndex = (y * width) + x
                 result += "\(storage[thisIndex]) "
             }
@@ -72,7 +72,7 @@ extension Rect: Sequence {
 }
 
 extension Rect: Collection {
-    public func index(after i: Point) -> Point {
+    public func index(after i: Point) -> Point { // swiftlint:disable:this identifier_name
         if i.x == width - 1 {
             if i.y == height - 1 {
                 return endIndex
@@ -98,16 +98,14 @@ extension Rect: Collection {
     public typealias SubSequence = SubRect
 
     public subscript(bounds: Range<Point>) -> SubRect<Element> {
-        get {
-            let topLeft = bounds.lowerBound
-            let bottomRight = bounds.upperBound + Point(x: -1, y: 0)
-            return SubRect(rect: self, topLeft: topLeft, bottomRight: bottomRight)
-        }
+        let topLeft = bounds.lowerBound
+        let bottomRight = bounds.upperBound + Point(x: -1, y: 0)
+        return SubRect(rect: self, topLeft: topLeft, bottomRight: bottomRight)
     }
 }
 
 public struct SubRect<Element>: Collection {
-    public func index(after i: Point) -> Point {
+    public func index(after i: Point) -> Point { // swiftlint:disable:this identifier_name
         if i.x == bottomRight.x {
             return Point(x: topLeft.x, y: i.y + 1)
         } else {

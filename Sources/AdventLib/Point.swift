@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable identifier_name
 public struct Point {
     public var x: Int
     public var y: Int

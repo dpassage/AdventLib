@@ -88,8 +88,8 @@ extension Char: Strideable {
         return Int(other.num) - Int(self.num)
     }
 
-    public func advanced(by n: Int) -> Char {
-        return Char(num: UInt8(Int(self.num) + n))
+    public func advanced(by amount: Int) -> Char {
+        return Char(num: UInt8(Int(self.num) + amount))
     }
 
     public typealias Stride = Int

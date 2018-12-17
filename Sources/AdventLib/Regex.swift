@@ -19,10 +19,10 @@ public class Regex {
         var result = [String]()
         let results = match.numberOfRanges
 
-        for i in 1..<results {
-            let range = match.range(at: i)
+        for index in 1..<results {
+            let range = match.range(at: index)
             guard range.location != NSNotFound else { continue }
-            result.append(inputString.substring(with: match.range(at: i)))
+            result.append(inputString.substring(with: match.range(at: index)))
         }
 
         return result
