@@ -47,6 +47,10 @@ public struct Rect<Element> {
         }
         return finalResult
     }
+
+    public func isValidIndex(_ point: Point) -> Bool {
+        return (0..<width).contains(point.x) && (0..<height).contains(point.y)
+    }
 }
 
 extension Rect: CustomStringConvertible {

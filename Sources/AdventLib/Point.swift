@@ -32,3 +32,18 @@ extension Point: Comparable {
         return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
 }
+
+extension Point {
+    public func adjacents() -> [Point] {
+        return [
+            Point(x: x + 1, y: y),
+            Point(x: x - 1, y: y),
+            Point(x: x, y: y + 1),
+            Point(x: x, y: y - 1)
+        ]
+    }
+
+    public func distance(from other: Point) -> Int {
+        return abs(x - other.x) + abs(y - other.y)
+    }
+}
