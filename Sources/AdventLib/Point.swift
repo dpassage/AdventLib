@@ -31,6 +31,10 @@ extension Point: Comparable {
     public static func + (lhs: Point, rhs: Point) -> Point {
         return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
+
+    public static func - (lhs: Point, rhs: Point) -> Point {
+        return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
 }
 
 extension Point {
