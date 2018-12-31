@@ -47,6 +47,19 @@ extension Point {
         ]
     }
 
+    public func allAdjacents() -> [Point] {
+        return [
+            Point(x: x + 1, y: y),
+            Point(x: x - 1, y: y),
+            Point(x: x, y: y + 1),
+            Point(x: x, y: y - 1),
+            Point(x: x + 1, y: y + 1),
+            Point(x: x - 1, y: y + 1),
+            Point(x: x + 1, y: y - 1),
+            Point(x: x - 1, y: y - 1)
+        ]
+    }
+    
     public func distance(from other: Point) -> Int {
         return abs(x - other.x) + abs(y - other.y)
     }
