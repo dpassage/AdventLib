@@ -8,9 +8,9 @@
 import Foundation
 
 extension Array: Comparable where Element: Comparable {
-    public static func < (lhs: Array<Element>, rhs: Array<Element>) -> Bool {
-        for (left, right) in zip(lhs, rhs) {
-            if left != right { return left < right }
+    public static func < (lhs: [Element], rhs: [Element]) -> Bool {
+        for (left, right) in zip(lhs, rhs) where left != right {
+            return left < right
         }
         return lhs.count < rhs.count
     }

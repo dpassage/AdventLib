@@ -59,7 +59,7 @@ extension Point {
             Point(x: x - 1, y: y - 1)
         ]
     }
-    
+
     public func distance(from other: Point) -> Int {
         return abs(x - other.x) + abs(y - other.y)
     }
