@@ -69,6 +69,10 @@ extension Char {
     public static func ~= (lhs: Char, rhs: Char) -> Bool {
         return lhs.equalsCaseInsensitive(rhs)
     }
+
+    public var isDigit: Bool {
+        return ("0"..."9").contains(self)
+    }
 }
 
 extension Char: ExpressibleByUnicodeScalarLiteral {
@@ -103,5 +107,9 @@ extension String {
     public init(_ chars: [Char]) {
         let scalars = chars.map { $0.character }
         self.init(scalars)
+    }
+
+    public mutating func append(char: Char) {
+        self.append(char.character)
     }
 }
