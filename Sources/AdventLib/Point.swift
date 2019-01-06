@@ -16,6 +16,8 @@ public struct Point {
         self.x = x
         self.y = y
     }
+
+    public static let origin = Point(x: 0, y: 0)
 }
 
 extension Point: Hashable {}
