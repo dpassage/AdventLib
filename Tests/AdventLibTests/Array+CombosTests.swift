@@ -46,6 +46,19 @@ class ArrayCombosTests: XCTestCase {
             ])
     }
 
+    func testPermuteOne() {
+        let input = [1]
+        let permutations = input.permute()
+        XCTAssertEqual(permutations.count, 1)
+        XCTAssertEqual(permutations, [[1]])
+    }
+
+    func testPermuteThree() {
+        let input = [1, 2, 3]
+        let permutations = input.permute()
+        XCTAssertEqual(permutations.count, 6)
+    }
+
     static var allTests = [
         ("testOne", testOne),
         ("testTwo", testTwo),
