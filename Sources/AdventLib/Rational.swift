@@ -29,11 +29,6 @@ public struct Rational {
         let divisor = gcd(a: abs(numerator), b: abs(denominator))
         numerator /= divisor
         denominator /= divisor
-
-//        if denominator < 0 {
-//            numerator *= -1
-//            denominator *= -1
-//        }
     }
 
     func gcd(a: Int, b: Int) -> Int {

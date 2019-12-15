@@ -16,12 +16,6 @@ class RationalTests: XCTestCase {
         XCTAssertEqual(number.denominator, 2)
     }
 
-    func testNormalizesSigns() {
-        let bothNeg = Rational(numerator: -1, denominator: -2)
-        XCTAssertEqual(bothNeg.numerator, 1)
-        XCTAssertEqual(bothNeg.denominator, 2)
-    }
-
     func testZeros() {
         let zero = Rational(numerator: 0, denominator: 2438542)
         XCTAssertEqual(zero.numerator, 0)
