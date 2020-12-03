@@ -99,8 +99,6 @@ extension Rect: Collection {
         return Point(x: width, y: height - 1)
     }
 
-    public typealias SubSequence = SubRect
-
     public subscript(bounds: Range<Point>) -> SubRect<Element> {
         let topLeft = bounds.lowerBound
         let bottomRight = bounds.upperBound + Point(x: -1, y: 0)
