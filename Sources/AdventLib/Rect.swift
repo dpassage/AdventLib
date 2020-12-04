@@ -132,8 +132,8 @@ public struct SubRect<Element>: Collection {
 }
 
 extension Rect where Element == Bool {
-    public init(pattern: String) {
-        let lines = pattern.split(separator: "\n")
+    public init(pattern: String, separator: Character = "\n") {
+        let lines = pattern.split(separator: separator)
         let width = lines[0].count
         let height = lines.count
         self.init(width: width, height: height, defaultValue: false)
