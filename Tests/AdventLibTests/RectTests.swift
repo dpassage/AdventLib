@@ -138,4 +138,20 @@ class RectTests: XCTestCase {
 
         """, printed)
     }
+
+    func testChunk() {
+        let pattern =
+        """
+        #..#
+        ....
+        ....
+        #..#
+        """
+        let rect = Rect<Bool>(pattern: pattern)
+
+        let chunked: Rect<Rect<Bool>> = rect.chunkedBy(2)
+        XCTAssertEqual(chunked.width, 2)
+        XCTAssertEqual(chunked.height, 2)
+        XCTAssertEqual(chunked[0, 0], Rect<Bool>(pattern: "#./..", separator: "/"))
+    }
 }

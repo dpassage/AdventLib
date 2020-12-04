@@ -207,3 +207,29 @@ extension Rect {
 extension Rect: Equatable where Element: Equatable {}
 
 extension Rect: Hashable where Element: Hashable {}
+
+extension Rect {
+    public func chunkedBy(_ size: Int) -> Rect<Rect<Element>> {
+        precondition(height % size == 0)
+        precondition(width % size == 0)
+        let horizontalChunks = width / size
+        let verticalChunks = height / size
+
+        let emptyChunk = Rect(width: size, height: size, defaultValue: self[0, 0])
+
+        var result = Rect<Rect<Element>>(width: horizontalChunks, height: verticalChunks, defaultValue: emptyChunk)
+
+        for chunkRow in 0..<verticalChunks {
+            for chunkColumn in 0..<horizontalChunks {
+                let baseRow = chunkRow * size
+                let baseColumn = chunkColumn * size
+                for x in 0..<size {
+                    for y in 0..<size {
+                        result[chunkColumn, chunkRow][x, y] = self[baseColumn + x, baseRow + y]
+                    }
+                }
+            }
+        }
+        return result
+    }
+}
