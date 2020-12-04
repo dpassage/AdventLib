@@ -203,3 +203,7 @@ extension Rect {
         return result
     }
 }
+
+extension Rect: Equatable where Element: Equatable {}
+
+extension Rect: Hashable where Element: Hashable {}
