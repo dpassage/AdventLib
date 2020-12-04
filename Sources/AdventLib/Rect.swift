@@ -190,4 +190,16 @@ extension Rect {
 
         return result
     }
+
+    public func rotated() -> Rect<Element> {
+        var result = self
+
+        for column in 0..<width {
+            for row in 0..<height {
+                result[width - row - 1, column] = self[column, width - row - 1]
+            }
+        }
+
+        return result
+    }
 }

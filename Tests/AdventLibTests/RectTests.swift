@@ -102,4 +102,24 @@ class RectTests: XCTestCase {
 
         """, printed)
     }
+
+    func testRotate() {
+
+        let pattern = """
+        .#.
+        ..#
+        ###
+
+        """
+
+        let rect: Rect<Bool> = Rect(pattern: pattern).rotated()
+
+        let printed = rect.printed()
+        XCTAssertEqual("""
+        ..#
+        #.#
+        .##
+
+        """, printed)
+    }
 }
