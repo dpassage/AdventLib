@@ -28,4 +28,78 @@ class RectTests: XCTestCase {
 
         XCTAssertEqual(elementsInSubrect, 10)
     }
+
+    func testBoolInit() {
+        let pattern = """
+        .#.
+        ..#
+        #X#
+        """
+
+        let rect: Rect<Bool> = Rect(pattern: pattern)
+        // indices below are column, row
+        XCTAssertEqual(rect[0,0], false)
+        XCTAssertEqual(rect[0,1], false)
+        XCTAssertEqual(rect[0,2], true)
+        XCTAssertEqual(rect[1,0], true)
+        XCTAssertEqual(rect[1,1], false)
+        XCTAssertEqual(rect[1,2], true)
+        XCTAssertEqual(rect[2,0], false)
+        XCTAssertEqual(rect[2,1], true)
+        XCTAssertEqual(rect[2,2], true)
+    }
+
+    func testPrint() {
+        let pattern = """
+        .#.
+        ..#
+        ###
+
+        """
+
+        let rect: Rect<Bool> = Rect(pattern: pattern)
+
+        let printed = rect.printed()
+        XCTAssertEqual(pattern, printed)
+    }
+
+    func testHorizontalFlip() {
+
+        let pattern = """
+        .#.
+        ..#
+        ###
+
+        """
+
+        let rect: Rect<Bool> = Rect(pattern: pattern).flippedHorizontally()
+
+        let printed = rect.printed()
+        XCTAssertEqual("""
+        .#.
+        #..
+        ###
+
+        """, printed)
+    }
+
+    func testVerticalFlip() {
+
+        let pattern = """
+        .#.
+        ..#
+        ###
+
+        """
+
+        let rect: Rect<Bool> = Rect(pattern: pattern).flippedVertically()
+
+        let printed = rect.printed()
+        XCTAssertEqual("""
+        ###
+        ..#
+        .#.
+
+        """, printed)
+    }
 }

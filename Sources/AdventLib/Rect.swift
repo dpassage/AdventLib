@@ -130,3 +130,64 @@ public struct SubRect<Element>: Collection {
 
     public typealias Index = Point
 }
+
+extension Rect where Element == Bool {
+    public init(pattern: String) {
+        let lines = pattern.split(separator: "\n")
+        let width = lines[0].count
+        let height = lines.count
+        self.init(width: width, height: height, defaultValue: false)
+        for (row, line) in lines.enumerated() {
+            for (column, char) in line.enumerated() {
+                switch char {
+                case ".": self[column, row] = false
+                default: self[column, row] = true
+                }
+            }
+        }
+    }
+
+    public func printed() -> String {
+        var result = ""
+        for row in 0..<height {
+            for column in 0..<width {
+                result.append(self[column, row] ? "#" : ".")
+            }
+            result.append("\n")
+        }
+
+        return result
+    }
+}
+
+extension Rect {
+    public func flippedHorizontally() -> Rect<Element> {
+        var result = self
+
+        for row in 0..<height {
+            // go halfway across the columns
+            let halfway = width / 2
+            for column in 0..<halfway {
+                let rightColumn = width - column - 1
+                result[column, row] = self[rightColumn, row]
+                result[rightColumn, row] = self[column, row]
+            }
+        }
+        return result
+    }
+
+    public func flippedVertically() -> Rect<Element> {
+        var result = self
+
+        let halfway = height / 2
+        for row in 0..<halfway {
+            let lowerRow = height - row - 1
+            for column in 0..<width {
+                result[column, lowerRow] = self[column, row]
+                result[column, row] = self[column, lowerRow]
+            }
+        }
+
+        return result
+    }
+}
